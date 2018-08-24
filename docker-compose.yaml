@@ -1,0 +1,12 @@
+version: '2'
+services:
+  web:
+    image: lpshanley/octobercms:latest
+    ports:
+      - "80:80"
+    environment:
+      - APP_DEBUG=true
+      - OCTOBER_CMS_BACKEND_URI=admin
+      - OCTOBER_PLUGINS=Flynsarmy.IdeHelper;RainLab.Builder;RainLab.User;KurtJensen.Passage;ToughDeveloper.ImageResizer;RainLab.Editable;VojtaSvoboda.TwigExtensions;RainLab.GoogleAnalytics;Bedard.AnalyticsExtension;Indikator.Backend;Renatio.DynamicPDF;Inetis.Dump;
+      - GIT_THEMES=https://github.com/lpshanley/FW-Dashboard.git;
+      - CMS_ACTIVE_THEME=FW-Dashboard
