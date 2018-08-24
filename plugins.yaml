@@ -1,0 +1,37 @@
+plugins:
+    dev:
+        - Flynsarmy.IdeHelper;
+        - RainLab.Builder;
+        - RainLab.User;
+        - KurtJensen.Passage;
+        - ToughDeveloper.ImageResizer;
+        - RainLab.Editable;
+        - VojtaSvoboda.TwigExtensions;
+        - RainLab.GoogleAnalytics;
+        - Bedard.AnalyticsExtension;
+        - Indikator.Backend;
+        - Renatio.DynamicPDF;
+        - Inetis.Dump;
+        custom:
+            - LucasShanley.FenwareInc;
+            - LucasShanley.UsersExtended;
+            - LucasShanley.Kanban;
+            - Bifrost.Filezerker;
+            - Bifrost.IMS;
+    prod:
+        - RainLab.User;
+        - KurtJensen.Passage;
+        - ToughDeveloper.ImageResizer;
+        - RainLab.Editable;
+        - VojtaSvoboda.TwigExtensions;
+        - RainLab.GoogleAnalytics;
+        - Bedard.AnalyticsExtension;
+        - Indikator.Backend;
+        - Renatio.DynamicPDF;
+        - Inetis.Dump;
+        custom:
+            - LucasShanley.FenwareInc;
+            - LucasShanley.UsersExtended;
+            - LucasShanley.Kanban;
+            - Bifrost.Filezerker;
+            - Bifrost.IMS;
