@@ -10,3 +10,25 @@ services:
       - OCTOBER_PLUGINS=Flynsarmy.IdeHelper;RainLab.Builder;RainLab.User;KurtJensen.Passage;ToughDeveloper.ImageResizer;RainLab.Editable;VojtaSvoboda.TwigExtensions;RainLab.GoogleAnalytics;Bedard.AnalyticsExtension;Indikator.Backend;Renatio.DynamicPDF;Inetis.Dump;
       - GIT_THEMES=https://github.com/lpshanley/FW-Dashboard.git;
       - CMS_ACTIVE_THEME=FW-Dashboard
+      - GIT_PLUGINS=https://github.com/lpshanley/IMS.git;
+    volumes:
+      - ./data/plugins/lpshanley:/var/www/html/plugins/lpshanley
+      - ./data/themes:/var/www/html/themes
+  mysql:
+    image: mysql:5.7
+    ports: 
+      - 3306:3306
+    environment:
+      - MYSQL_DATABASE=octobercms
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=password
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
