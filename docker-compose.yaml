@@ -4,7 +4,18 @@ services:
     image: lpshanley/octobercms:latest
     ports:
       - "80:80"
+    depends_on:
+      - db
     environment:
+      - DB_TYPE=mysql
+      - DB_HOST=db
+      - DB_DATABASE=octobercms
+      - DB_USERNAME=root
+      - DB_PASSWORD=password
+      - CACHE_STORE=database
+      - QUEUE_DRIVER=database
+      - SESSION_DRIVER=database
+      - TZ=CST
       - APP_DEBUG=true
       - OCTOBER_CMS_BACKEND_URI=admin
       - OCTOBER_PLUGINS=Flynsarmy.IdeHelper;RainLab.Builder;RainLab.User;KurtJensen.Passage;ToughDeveloper.ImageResizer;RainLab.Editable;VojtaSvoboda.TwigExtensions;RainLab.GoogleAnalytics;Bedard.AnalyticsExtension;Indikator.Backend;Renatio.DynamicPDF;Inetis.Dump;
@@ -14,21 +25,24 @@ services:
     volumes:
       - ./data/plugins/lpshanley:/var/www/html/plugins/lpshanley
       - ./data/themes:/var/www/html/themes
-  mysql:
-    image: mysql:5.7
+      - ./data/storage/logs:/var/www/html/storage/logs
+      - ./data/storage/temp:/var/www/html/storage/temp
+      - ./data/storage/app:/var/www/html/storage/app
+  db:
+    image: mysql:latest
     ports: 
       - 3306:3306
     environment:
       - MYSQL_DATABASE=octobercms
       - MYSQL_ROOT_PASSWORD=password
-      - MYSQL_USER=admin
-      - MYSQL_PASSWORD=password
     volumes:
-      - ./data/mysql:/var/lib/mysql
+      - ./data/db:/var/lib/db
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     ports:
       - "8080:80"
+    depends_on:
+      - db
     environment:
-      - PMA_HOST=mysql
+      - PMA_HOST=db
       - PMA_PORT=3306
